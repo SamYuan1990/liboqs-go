@@ -4,7 +4,7 @@ FROM ubuntu:latest
 RUN apt-get -y update && \
     apt-get install -y build-essential git cmake libssl-dev wget
 
-COPY install_go.sh
+COPY install_go.sh .
 RUN install_go.sh
 RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.5.linux-$(uname -m).tar.gz
 
