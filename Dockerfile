@@ -6,7 +6,6 @@ RUN apt-get -y update && \
 
 COPY install_go.sh .
 RUN install_go.sh
-RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.5.linux-$(uname -m).tar.gz
 
 # Get liboqs
 RUN git clone --depth 1 --branch main https://github.com/open-quantum-safe/liboqs
