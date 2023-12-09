@@ -4,8 +4,9 @@ FROM ubuntu:latest
 RUN apt-get -y update && \
     apt-get install -y build-essential git cmake libssl-dev wget
 
+WORKDIR tmp
 COPY install_go.sh .
-RUN install_go.sh
+RUN ./install_go.sh
 
 # Get liboqs
 RUN git clone --depth 1 --branch main https://github.com/open-quantum-safe/liboqs
