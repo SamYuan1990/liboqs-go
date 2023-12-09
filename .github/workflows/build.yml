@@ -40,7 +40,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: ./docker
+          context: .
           platforms: linux/amd64,linux/arm64,linux/s390x
           push: true
           tags: ghcr.io/samyuan1990/liboqs-go

@@ -2,8 +2,10 @@ FROM ubuntu:latest
 
 # Install dependencies
 RUN apt-get -y update && \
-    apt-get install -y build-essential git cmake libssl-dev golang
+    apt-get install -y build-essential git cmake libssl-dev wget
 
+RUN wget https://go.dev/dl/go1.21.5.linux-$(uname -m).tar.gz
+RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.5.linux-$(uname -m).tar.gz
 # Get liboqs
 RUN git clone --depth 1 --branch main https://github.com/open-quantum-safe/liboqs
 
@@ -23,3 +25,4 @@ RUN git clone --depth 1 --branch main https://github.com/open-quantum-safe/liboq
 # Configure liboqs-go
 ENV PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/oqs/liboqs-go/.config
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+ENV PATH=$PATH:/usr/local/go/bin
