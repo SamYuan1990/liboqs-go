@@ -4,12 +4,10 @@ FROM ubuntu:latest
 RUN apt-get -y update && \
     apt-get install -y build-essential git cmake libssl-dev wget
 
-RUN uname -m
-RUN echo https://go.dev/dl/go1.21.5.linux-$(uname -m).tar.gz
-RUN wget https://go.dev/dl/go1.21.5.linux-$(uname -m).tar.gz
+COPY install_go.sh
+RUN install_go.sh
 RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.21.5.linux-$(uname -m).tar.gz
 
-#https://go.dev/dl/go1.21.5.linux-s390x.tar.gz
 # Get liboqs
 RUN git clone --depth 1 --branch main https://github.com/open-quantum-safe/liboqs
 
